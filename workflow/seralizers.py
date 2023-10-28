@@ -10,7 +10,7 @@ class RetrieveWorkFlowTriggerSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkFlowTrigger
         fields = ['workflow_trigger_id','started_at', 'ended_at', 'status', 'triggered_by']
-        read_only_fields = ['workflow_trigger_id', 'triggered_by']
+        read_only_fields = ['workflow_trigger_id', 'triggered_by', 'triggered_by']
 
 
 class RelationWorkFlowTriggerSerializer(serializers.ModelSerializer):
@@ -89,14 +89,15 @@ class CreateListWorkFlowSerializer(serializers.ModelSerializer):
 
 
 class CreateListWorkFlowTriggerSerializer(serializers.ModelSerializer):
-    triggered_by = UserSerializer(read_only=True)
+    triggered_by = UserSerializer
     workflow_id = CreateListRelationWorkFlowSerializer
     class Meta:
         model = WorkFlowTrigger
         fields = ['started_at', 'ended_at', 'status', 'triggered_by',
-                  'workflow_trigger_id', 'workflow_id']
+                  'workflow_trigger_id']
         read_only_fields = ['started_at', 'ended_at', 'status', 'triggered_by',
-                            'workflow_id', 'workflow_trigger_id']
+                  'workflow_trigger_id']
+
 
 
 

@@ -19,7 +19,7 @@ class WorkSpace(models.Model):
 
 class WorkFlow(TimeStampMixin):
     workflow_id = models.UUIDField(primary_key=True, default=uuid.uuid4())
-    name = models.CharField(max_length=100, blank=False, null=False, unique=True)
+    name = models.CharField(max_length=100, blank=False, null=False)
     created_by = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
     workspace_id = models.ForeignKey(WorkSpace, null=False, on_delete=models.CASCADE,
                                      related_name='workflows')
